@@ -18,8 +18,6 @@ jobs:
 
       - name: Install PHP dependencies
         run: composer install
-        working-directory: ./packages/sdk-php
 
       - name: Tests
         working-directory: ./packages/sdk-php
-        run: ./vendor/bin/phpunit tests
