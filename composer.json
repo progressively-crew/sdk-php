@@ -1,7 +1,8 @@
 {
   "name": "progressively/sdk-php",
   "description": "PHP SDK for Progressively ",
-  "version": "0.0.1-alpha.1",
+  "license": "MIT",
+  "version": "0.0.1-alpha.2",
   "require-dev": {
     "phpunit/phpunit": "^9.5"
   },
@@ -14,5 +15,10 @@
   "require": {
     "ext-curl": "*",
     "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Progressively\\": "src/"
+    }
   }
 }
