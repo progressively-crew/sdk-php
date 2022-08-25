@@ -30,6 +30,15 @@ jobs:
         ports:
           - 5432:5432
     steps:
+      - name: Clone  repo
+        run: git clone "git@github.com:progressively-crew/progressively.git" master
+      - name: Move SDK in test folder
+        run: mv -r ./src/* ./example/php/sdk/src/*
+      - name: Move SDK composer file in test folder
+        run: mv -r ./composer.json ./example/php/sdk/composer.json
+      - name: New config file for local project
+        run: mv ./composer-test.json ./example/php/composer.json
+
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
@@ -43,9 +52,6 @@ jobs:
         with:
           php-version: "8.1"
 
-      - name: Clone  repo
-        run: git clone "git@github.com:progressively-crew/progressively.git" master
-
       - name: Creating .env files
         run: mv ./packages/backend/.env.example ./packages/backend/.env
 
@@ -53,12 +59,9 @@ jobs:
         working-directory: ./example/cypress-helpers
         run: npm install
 
-      - name: New config file for local project
-        run: mv ./composer-test.json ./example/php/composer.json
-
-      - name: Move SDK in test folder
-        run: mv -r ./src/* ./example/php/sdk/*
-
+      - name: Install SDK dependencies on the example project
+        working-directory: ./example/php/sdk
+        run: npm install && composer install
       - name: Install dependencies on the example project
         working-directory: ./example/php
         run: npm install && composer install
