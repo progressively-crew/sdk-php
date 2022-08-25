@@ -1,0 +1,16 @@
+{
+  "name": "progressively/sdk-php",
+  "description": "Example of the PHP sdk in action",
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Progressively\\": "sdk/"
+    }
+  }
+}
