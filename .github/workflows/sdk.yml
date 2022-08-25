@@ -33,9 +33,9 @@ jobs:
       - name: Clone  repo
         run: git clone "https://github.com/progressively-crew/progressively.git" master
       - name: Move SDK in test folder
-        run: mv -r ./src/* ./example/php/sdk/src/*
+        run: mv ./src ./example/php/sdk/
       - name: Move SDK composer file in test folder
-        run: mv -r ./composer.json ./example/php/sdk/composer.json
+        run: mv ./composer.json ./example/php/sdk/composer.json
       - name: New config file for local project
         run: mv ./composer-test.json ./example/php/composer.json
 
