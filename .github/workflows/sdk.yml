@@ -30,6 +30,7 @@ jobs:
         ports:
           - 5432:5432
     steps:
+      - uses: actions/checkout@v2
       - name: Log
         run: ls && pwd
       - name: Clone  repo
@@ -41,7 +42,7 @@ jobs:
       - name: New config file for local project
         run: mv ./composer-test.json ./example/php/composer.json
 
-      - uses: actions/checkout@v2
+
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
