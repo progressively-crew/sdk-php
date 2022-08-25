@@ -31,7 +31,7 @@ jobs:
           - 5432:5432
     steps:
       - name: Clone  repo
-        run: git clone "https://github.com/progressively-crew/progressively.git" .
+        run: git init && git remote add origin "https://github.com/progressively-crew/progressively.git" && git fetch && git checkout -t origin/master -f
       - name: Move SDK in test folder
         run: mkdir -p ./example/php/sdk && cp -r ./src/ ./example/php/sdk/
       - name: Move SDK composer file in test folder
