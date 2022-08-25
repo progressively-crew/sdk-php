@@ -31,7 +31,7 @@ jobs:
           - 5432:5432
     steps:
       - name: Log
-        run: ls && pwd
+        run: ls && pwd && cd .. && ls && pwd &&
       - name: Clone  repo
         run: ls &&  git init && git remote add origin "https://github.com/progressively-crew/progressively.git" && git fetch && git checkout -t origin/master -f
       - name: Move SDK in test folder
