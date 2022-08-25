@@ -33,7 +33,7 @@ jobs:
       - name: Clone  repo
         run: git clone "https://github.com/progressively-crew/progressively.git" .
       - name: Move SDK in test folder
-        run: mkdir -p ./example/php/sdk && cp -r ./src/ ./example/php/sdk/
+        run: ll && mkdir -p ./example/php/sdk && cp -r ./src/ ./example/php/sdk/
       - name: Move SDK composer file in test folder
         run: mv ./composer.json ./example/php/sdk/composer.json
       - name: New config file for local project
