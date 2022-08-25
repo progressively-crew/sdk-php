@@ -10,7 +10,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Progressively\\": "sdk/"
+      "Progressively\\": "../../example/php/sdk/"
     }
   }
 }
