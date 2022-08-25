@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Clone  repo
-        run: git clone "https://github.com/progressively-crew/progressively.git" .
+        run: git clone "https://github.com/progressively-crew/progressively.git" temp/ && mv temp/* .
       - name: Move SDK in test folder
         run: mkdir -p ./example/php/sdk && ls && pwd &&  cp -r ./src/ ./example/php/sdk/
       - name: Move SDK composer file in test folder
