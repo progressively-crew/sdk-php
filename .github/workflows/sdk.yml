@@ -34,11 +34,11 @@ jobs:
       - name: Clone  repo
         run: git clone "https://github.com/progressively-crew/progressively.git" temp/ && mv temp/* .
       - name: Move SDK in test folder
-        run: mkdir -p ./example/php/sdk && ls && pwd &&  cp -r ./src/ ./example/php/sdk/
+        run: mkdir -p ./example/php/sdk &&  cp -r ./src/ ./example/php/sdk/
       - name: Move SDK composer file in test folder
-        run: mv ./composer.json ./example/php/sdk/composer.json
+        run: cp ./composer.json ./example/php/sdk/composer.json
       - name: New config file for local project
-        run: mv ./composer-test.json ./example/php/composer.json
+        run: cp ./composer-test.json ./example/php/composer.json
 
 
       - uses: actions/setup-node@v2
@@ -62,7 +62,7 @@ jobs:
 
       - name: Install SDK dependencies on the example project
         working-directory: ./example/php/sdk
-        run: npm install && composer install
+        run: composer install
       - name: Install dependencies on the example project
         working-directory: ./example/php
         run: npm install && composer install
