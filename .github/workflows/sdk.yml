@@ -31,15 +31,12 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v2
-      - name: Clone  repo
-        run: git clone "https://github.com/progressively-crew/progressively.git" temp/ && mv temp/* .
-      - name: Move SDK in test folder
-        run: mkdir -p ./example/php/sdk &&  cp -r ./src/ ./example/php/sdk/
-      - name: Move SDK composer file in test folder
-        run: cp ./composer.json ./example/php/sdk/composer.json
-      - name: New config file for local project
-        run: cp ./composer-test.json ./example/php/composer.json
 
+      - name: Clone repo of back office
+        run: git clone "https://github.com/progressively-crew/progressively.git" backend/
+      - name: Execute backoffice server
+        working-directory: ./backend/
+        run: docker-compose up -d
 
       - uses: actions/setup-node@v2
         with:
@@ -53,37 +50,18 @@ jobs:
         with:
           php-version: "8.1"
 
-      - name: Creating .env files
-        run: mv ./packages/backend/.env.example ./packages/backend/.env
-
       - name: Install the cypress-helpers dependencies
         working-directory: ./example/cypress-helpers
         run: npm install
 
-      - name: Install SDK dependencies on the example project
-        working-directory: ./example/php/sdk
-        run: composer install
       - name: Install dependencies on the example project
-        working-directory: ./example/php
+        working-directory: ./example
         run: npm install && composer install
 
-      - name: Bootstrap projects
-        run: npm run setup:ci
-
-      - name: Prepare the DB
-        run: npm run db:prepare
-
-      - name: Build
-        run: npm run build
-
-      - name: Start the backend project
-        working-directory: ./packages/backend
-        run: npm start &
-
       - name: Start the Example PHP project
-        working-directory: ./example/php
+        working-directory: ./example
         run: php -S localhost:3000 &
 
       - name: E2E tests
-        working-directory: ./example/php
+        working-directory: ./example
         run: npx wait-on -t 60000 tcp:4000 && npm run test:e2e:ci

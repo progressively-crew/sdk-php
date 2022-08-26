@@ -1,0 +1,21 @@
+{
+  "name": "php-demo-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test:e2e": "cypress open",
+    "test:e2e:ci": "cypress run --browser chrome"
+  },
+  "dependencies": {
+    "@progressively/cypress-helpers": "file:../cypress-helpers"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.6.0",
+    "typescript": "^4.7.4"
+  }
+}
