@@ -37,8 +37,8 @@ jobs:
       - name: Copy default configuration frontend
         working-directory: backend/packages/frontend/
         run: cp .env.example .env
-      - name: Copy default configuration backoffice
-        working-directory: backend/packages/backoffice/
+      - name: Copy default configuration backend
+        working-directory: backend/packages/backend/
         run: cp .env.example .env
 
       - name: Execute backoffice server
