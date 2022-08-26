@@ -36,9 +36,7 @@ jobs:
           node-version: "16"
           cache: "npm"
           cache-dependency-path: |
-            package-lock.json
-            example/php/package-lock.json
-            packages/backend/package-lock.json
+            /example/package-lock.json
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "8.1"

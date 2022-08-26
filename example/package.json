@@ -6,7 +6,17 @@
   "private": true,
   "scripts": {
     "test:e2e": "cypress open",
-    "test:e2e:ci": "cypress run --browser chrome"
+    "test:e2e:ci": "cypress run --browser chrome",
+    "build": "lerna run build",
+    "db:prepare": "lerna run db:migrate:dev && lerna run db:generate:schema",
+    "db:seed": "lerna run db:seed",
+    "db:cleanup": "lerna run db:cleanup",
+    "gen:user": "npm --prefix packages/backend run gen:user",
+    "setup": "npm i && lerna bootstrap",
+    "setup:ci": "npm ci --legacy-peer-deps && lerna bootstrap -- --legacy-peer-deps",
+    "start": "lerna run start --stream",
+    "start:dev": "lerna run dev --stream",
+    "deploy:lib": "lerna publish"
   },
   "dependencies": {
     "@progressively/cypress-helpers": "file:../cypress-helpers"
@@ -16,6 +26,8 @@
   "license": "MIT",
   "devDependencies": {
     "cypress": "^10.6.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "lerna": "^5.4.0",
+    "wait-on": "^6.0.1"
   }
 }
