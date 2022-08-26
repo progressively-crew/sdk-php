@@ -34,6 +34,13 @@ jobs:
 
       - name: Clone repo of back office
         run: git clone "https://github.com/progressively-crew/progressively.git" backend/
+      - name: Copy default configuration frontend
+        working-directory: ./backend/packages/frontend/
+        run: cp .env.example .env
+      - name: Copy default configuration backoffice
+        working-directory: ./backend/packages/backoffice/
+        run: cp .env.example .env
+
       - name: Execute backoffice server
         working-directory: ./backend/
         run: docker-compose up -d
