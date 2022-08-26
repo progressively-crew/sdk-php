@@ -31,6 +31,17 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: |
+            package-lock.json
+            example/php/package-lock.json
+            packages/backend/package-lock.json
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
 
       - name: Clone repo of back office
         run: git clone "https://github.com/progressively-crew/progressively.git" backend/
@@ -44,18 +55,6 @@ jobs:
       - name: Execute backoffice server
         working-directory: ./backend/
         run: docker-compose up -d
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-          cache: "npm"
-          cache-dependency-path: |
-            package-lock.json
-            example/php/package-lock.json
-            packages/backend/package-lock.json
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
 
       - name: Install the cypress-helpers dependencies
         working-directory: ./example/cypress-helpers
