@@ -8,7 +8,6 @@ use function PHPUnit\Framework\assertEquals;
 
 require __DIR__ . "/../src/Progressively.php";
 require __DIR__ . "/../src/Http.php";
-require __DIR__ . "/../src/Flags.php";
 
 class ProgressivelyTest extends TestCase
 {
@@ -22,10 +21,9 @@ class ProgressivelyTest extends TestCase
 
         // Act
         $sdk = Progressively::create("my-api-key", array(), $httpStub);
-        $flags = $sdk->loadFlags();
 
         // Assert
-        assertEquals($flags->isActivated(('newHomepage')), true);
+        assertEquals($sdk->isActivated(('newHomepage')), true);
     }
 
     public function testRetrievingAnExistingAndNotActivatedFlag()
@@ -37,10 +35,9 @@ class ProgressivelyTest extends TestCase
 
         // Act
         $sdk = Progressively::create("my-api-key", array(), $httpStub);
-        $flags = $sdk->loadFlags();
 
         // Assert
-        assertEquals($flags->isActivated(('newHomepage')), false);
+        assertEquals($sdk->isActivated(('newHomepage')), false);
     }
 
     public function testRetrievingANotExistingFlag()
@@ -52,9 +49,8 @@ class ProgressivelyTest extends TestCase
 
         // Act
         $sdk = Progressively::create("my-api-key", array(), $httpStub);
-        $flags = $sdk->loadFlags();
 
         // Assert
-        assertEquals($flags->isActivated(('notExistingFlag')), false);
+        assertEquals($sdk->isActivated(('notExistingFlag')), false);
     }
 }

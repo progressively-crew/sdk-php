@@ -1,0 +1,28 @@
+{
+  "name": "sdk-php",
+  "version": "1.0.0",
+  "description": "For documentation, make sure to check [the documentation website](https://progressively.app/docs/guides/php).",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e:ci": "playwright test",
+    "test:prepare": "playwright install && playwright install-deps"
+  },
+  "directories": {
+    "example": "example",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/progressively-crew/sdk-php.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/progressively-crew/sdk-php/issues"
+  },
+  "homepage": "https://github.com/progressively-crew/sdk-php#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.29.0"
+  }
+}
