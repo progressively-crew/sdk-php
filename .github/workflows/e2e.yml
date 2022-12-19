@@ -78,9 +78,5 @@ jobs:
         working-directory: ./example
         run: php -S localhost:3003 &
 
-      - name: Check things out
-        working-directory: ./example
-        run: ls && curl localhost:3003
-
       - name: E2E tests
-        run: npx wait-on -t 60000 tcp:4000 && npm run test:e2e:ci
+        run: npx wait-on -t 60000 tcp:4000 && curl http://localhost:3003 && npm run test:e2e:ci
