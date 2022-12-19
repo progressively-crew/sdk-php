@@ -41,10 +41,10 @@ const changeFlagStatus = async (
 test("checks the not activate variant of the flag", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByText("New variant")).toBeVisible();
+  await expect(page.getByText("New variant")).toBeTruthy();
 
   await changeFlagStatus("1", "1", "NOT_ACTIVATED");
 
   await page.goto("/");
-  await expect(page.getByText("Old variant")).toBeVisible();
+  await expect(page.getByText("Old variant")).toBeTruthy();
 });
