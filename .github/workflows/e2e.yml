@@ -68,7 +68,7 @@ jobs:
 
       - name: Build
         run: npm run build
-        working-directory: ./progressively
+        working-directory: ./progressively/packages/backend
 
       - name: Start the backend project
         working-directory: ./progressively/packages/backend
