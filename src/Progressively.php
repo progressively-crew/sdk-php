@@ -4,28 +4,24 @@ namespace Progressively;
 
 class Progressively
 {
-    private $options = array();
-    private $fields = array();
-    private $httpService;
+    private array $flags = [];
 
-    private function __construct(Http $httpService, array $options = [])
+    private function __construct(array $flags)
     {
-        $this->httpService = $httpService;
-        $this->options = $options;
+        $this->flags = $flags;
     }
-
 
     public static function create($clientKey, $options = array(), Http $httpService = new Http()): Progressively
     {
+        $apiUrl = Progressively::safeGet($options, "apiUrl", "http://localhost:4000") . '/sdk/';
         $actualOptions = array();
-        $actualOptions["apiUrl"] = Progressively::safeGet($options, "apiUrl", "https://api.progressively.app") . '/sdk/';
-        $actualOptions["websocketUrl"] = Progressively::safeGet($options, "websocketUrl", "wss://api.progressively.app");
-        $actualOptions["initialFlags"] = Progressively::safeGet($options, "initialFlags", array());
         $actualOptions["fields"] = Progressively::safeGet($options, "fields ", array());
         $actualOptions["fields"]["clientKey"] = $clientKey;
 
+        $endPoint = $httpService->generateUrl($apiUrl, $actualOptions["fields"]);
+        $flags = $httpService->execute($endPoint);
 
-        return new Progressively($httpService, $actualOptions);
+        return new Progressively($flags);
     }
 
     private static function safeGet($array, $indexName, $defaultValue)
@@ -33,20 +29,12 @@ class Progressively
         return (isset($array[$indexName]) && !empty($array[$indexName])) ? $array[$indexName] : $defaultValue;
     }
 
-    public function loadFlags()
+    public function isActivated(string $flagName)
     {
-        $flags =  $this->httpService->execute($this->generateUrl());
+        if (isset($this->flags[$flagName])) {
+            return $this->flags[$flagName];
+        }
 
-        return new Flags($flags);
-    }
-
-    private function generateUrl(): string
-    {
-        $jsonEncodedOpts = json_encode($this->options["fields"]);
-        $encodedUrlParams = base64_encode($jsonEncodedOpts);
-
-        $url = $this->options["apiUrl"] . $encodedUrlParams;
-
-        return $url;
+        return false;
     }
 }

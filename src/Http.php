@@ -4,11 +4,23 @@ namespace Progressively;
 
 class Http
 {
+    public function generateUrl(string $rootUrl, array $options): string
+    {
+        $jsonEncodedOpts = json_encode($options);
+        $encodedUrlParams = base64_encode($jsonEncodedOpts);
+
+        $url = $rootUrl . $encodedUrlParams;
+
+        return $url;
+    }
+
     public function execute(string $url)
     {
         $curl = curl_init();
 
-        curl_setopt_array($curl, array(
+        curl_setopt_array(
+            $curl,
+            array(
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
@@ -17,7 +29,8 @@ class Http
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
-        ));
+            )
+        );
 
         $response = curl_exec($curl);
 
