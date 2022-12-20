@@ -17,8 +17,8 @@ $ docker-compose up -d
 ```sh
 $ git clone https://github.com/progressively-crew/sdk-php
 $ cd sdk-php
-$ composer install
 $ cd example
+$ composer install
 $ php -S localhost:3000
 ```
 
