@@ -1,4 +1,4 @@
-For documentation, make sure to check [the documentation website](https://progressively.app/docs/guides/php).
+For documentation, make sure to check [the documentation website](https://progressively.app/).
 
 ## Get started
 
