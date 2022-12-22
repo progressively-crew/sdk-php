@@ -1,6 +1,6 @@
 For documentation, make sure to check [the documentation website](https://progressively.app/).
 
-## Get started
+## Run the example
 
 ### Start Progressively
 
