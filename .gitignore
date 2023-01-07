@@ -1,6 +1,7 @@
 vendor
 .DS_Store
 .idea/
+.phpunit.result.cache
 node_modules/
 /test-results/
 /playwright-report/
