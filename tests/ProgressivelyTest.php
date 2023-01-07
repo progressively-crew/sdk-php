@@ -4,7 +4,8 @@ namespace Progressively;
 
 use PHPUnit\Framework\TestCase;
 use Progressively\Progressively;
-use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertFalse;
+use function PHPUnit\Framework\assertTrue;
 
 require __DIR__ . "/../src/Progressively.php";
 require __DIR__ . "/../src/Http.php";
@@ -23,7 +24,7 @@ class ProgressivelyTest extends TestCase
         $sdk = Progressively::create("my-api-key", array(), $httpStub);
 
         // Assert
-        assertEquals($sdk->isActivated(('newHomepage')), true);
+        assertTrue($sdk->isActivated(('newHomepage')));
     }
 
     public function testRetrievingAnExistingAndNotActivatedFlag()
@@ -37,7 +38,7 @@ class ProgressivelyTest extends TestCase
         $sdk = Progressively::create("my-api-key", array(), $httpStub);
 
         // Assert
-        assertEquals($sdk->isActivated(('newHomepage')), false);
+        assertFalse($sdk->isActivated(('newHomepage')));
     }
 
     public function testRetrievingANotExistingFlag()
@@ -51,6 +52,6 @@ class ProgressivelyTest extends TestCase
         $sdk = Progressively::create("my-api-key", array(), $httpStub);
 
         // Assert
-        assertEquals($sdk->isActivated(('notExistingFlag')), false);
+        assertFalse($sdk->isActivated(('notExistingFlag')));
     }
 }
